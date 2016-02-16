@@ -45,7 +45,7 @@ ZSH_THEME="gentoo"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
-plugins=(git sudo)
+plugins=(git sudo web-search)
 
 # User configuration
 
@@ -97,3 +97,4 @@ alias g++w="g++ -W -Wextra -Werror -Wall"
 alias gccw="gcc -W -Wextra -Wall - Werror"
 
 alias cl="clean-tmp"
+alias src="source ~/.zshrc"

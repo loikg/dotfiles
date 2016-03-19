@@ -9,9 +9,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-color-solarized'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-ailine-themes'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()

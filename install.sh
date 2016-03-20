@@ -23,6 +23,3 @@ for file in $files; do
 	ln -sf $dir/$file $HOME
 done
 echo "done..."
-
-echo "sourcing new zsh file"
-source $HOME/.zshrc

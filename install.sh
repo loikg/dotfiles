@@ -29,3 +29,11 @@ if test ! -d $HOME/.vim/bundle/Vundle.vim; then
 	git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 fi
 echo "done"
+
+echo "setup tpm (tmux plugin manager)"
+if test ! -d $HOME/.tmux/plugins/tpm/; then
+	git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+fi
+	
+
+

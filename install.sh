@@ -24,9 +24,11 @@ for file in $files; do
 done
 
 echo "setup vundle for vim"
+if test -d $HOME/.vim
+then
+	mv -f $HONE/.vim $backup_dir
+fi
 mkdir -p $HOME/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 echo "done"
-
-echo "done..."

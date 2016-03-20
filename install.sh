@@ -2,7 +2,7 @@
 
 backup_dir="$HOME/.dotfile_backup"
 dir="$HOME/.dotfiles"
-files=".zshrc .vimrc .tmux.conf"
+files=".zshrc .vimrc .tmux.conf .vim"
 
 echo "create backup dir..."
 mkdir -p $backup_dir
@@ -22,4 +22,11 @@ for file in $files; do
 	echo "create symlink to $dir/$file in $HOME"
 	ln -sf $dir/$file $HOME
 done
+
+echo "setup vundle for vim"
+mkdir -p $HOME/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+echo "done"
+
 echo "done..."

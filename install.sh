@@ -14,7 +14,7 @@ echo "done..."
 
 echo "begin backup old files and setup new files..."
 for file in $files; do
-	if -e $HOME/$file
+	if test -e $HOME/$file
 	then
 		echo "moving $HOME/$file to $backup_dir"
 		mv -f $HOME/$file $backup_dir

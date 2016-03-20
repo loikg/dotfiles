@@ -1,6 +1,6 @@
 #!/bin/sh
 
-backup_dir="$HOME/.dotfile_backup"
+backup_dir="$HOME/.dotfiles_backup"
 dir="$HOME/.dotfiles"
 files=".zshrc .vimrc .tmux.conf"
 
@@ -17,7 +17,7 @@ for file in $files; do
 	if test -e $HOME/$file
 	then
 		echo "moving $HOME/$file to $backup_dir"
-		mv -f $HOME/$file $backup_dir
+		cp -Lr $HOME/$file $backup_dir
 	fi
 	echo "create symlink to $dir/$file in $HOME"
 	ln -sf $dir/$file $HOME

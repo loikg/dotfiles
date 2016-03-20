@@ -2,7 +2,7 @@
 
 backup_dir="$HOME/.dotfiles_backup"
 dir="$HOME/.dotfiles"
-files=".zshrc .vimrc .tmux.conf"
+files=".zshrc .vimrc .tmux.conf .emacs .emacs.d"
 
 echo "create backup dir..."
 mkdir -p $backup_dir

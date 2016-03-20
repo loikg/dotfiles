@@ -20,7 +20,7 @@ for file in $files; do
 		cp -Lr $HOME/$file $backup_dir
 	fi
 	echo "create symlink to $dir/$file in $HOME"
-	ln -sf $dir/$file $HOME
+	ln -sfn $dir/$file $HOME
 done
 
 echo "setup vundle for vim"

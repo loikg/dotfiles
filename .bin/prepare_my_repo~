@@ -1,5 +1,0 @@
-blih -u gaonac_l repository create $1
-blih -u gaonac_l repository setacl $1 ramassage-tek r
-blih -u gaonac_l repository getacl $1
-
-git clone gaonac_l@git.epitech.eu:/gaonac_l/$1 ~/rendu/

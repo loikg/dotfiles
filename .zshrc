@@ -65,7 +65,7 @@ export LANG=en_US.UTF-8
 export EDITOR="vim"
 export PAGDER="most"
 export HOSTTYPE="x86_64"
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 #Alias
 

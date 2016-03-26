@@ -14,6 +14,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'loikg/vim-epitech'
 
 call vundle#end()
 filetype plugin indent on
@@ -35,3 +36,9 @@ let g:solarized_termcolors=16
 
 " airline configuration
 let g:airline_theme='solarized'
+
+" vim-epitech config
+let g:epi_login = 'gaonac_l'
+let g:epi_name = 'Loik Gaonach'
+let g:epi_mode_emacs = 1
+"let g:epi_mode_auto = 1 " auto indent epitech style when header

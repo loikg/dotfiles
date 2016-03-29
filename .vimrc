@@ -1,24 +1,11 @@
-set nocompatible
-filetype off
+"
+"	.VIMRC
+"	Config file for vim
+"	use vim-plug for plugin managment
+"
 
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'loikg/vim-epitech'
-Plugin 'scrooloose/syntastic'
-
-call vundle#end()
-filetype plugin indent on
+" define leader
+let mapleader = ","
 
 " enable syntax highlighting
 syntax on
@@ -29,6 +16,29 @@ set number
 " enable mouse
 set mouse=a
 
+" tab size
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+
+" define shortcut for buffers
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'				"side bar file explorer
+Plug 'kien/ctrlp.vim'					"fuzzy loader
+Plug 'altercation/vim-colors-solarized' "color theme
+Plug 'vim-airline/vim-airline'			"status bar
+Plug 'vim-airline/vim-airline-themes'	"status bar theme
+Plug 'tpope/vim-fugitive'				"git integration
+Plug 'edkolev/tmuxline.vim'				"tmux status bar theme ^^
+Plug 'loikg/vim-epitech'				"epitech plugin
+Plug 'scrooloose/syntastic'				"syntax checker
+Plug 'scrooloose/nerdcommenter'			"quicly comment
+
+call plug#end()
+
 " theme configuration
 set background=dark
 colorscheme solarized
@@ -37,23 +47,16 @@ let g:solarized_termcolors=16
 
 " airline configuration
 let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1 " Show buffer list
+let g:airline#extensions#tabline#fnamemod = ':t' " Show filename only
 
 " vim-epitech config
 let g:epi_login = 'gaonac_l'
 let g:epi_name = 'Loik Gaonach'
 let g:epi_mode_emacs = 1
-"let g:epi_mode_auto = 1 " auto indent epitech style when header
 
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" tab size
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
-
-" Setup some default ignores
+" Ctrl-p config
+" ignore some folders
  let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
     \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
@@ -63,8 +66,9 @@ set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
  set statusline+=%#warningmsg#
  set statusline+=%{SyntasticStatuslineFlag()}
  set statusline+=%*
-
  let g:syntastic_always_populate_loc_list = 1
  let g:syntastic_auto_loc_list = 1
  let g:syntastic_check_on_open = 1
  let g:syntastic_check_on_wq = 0
+ let g:syntastic_cpp_compiler_options = '-std=c++11'
+ let g:syntastic_cpp_config_file = '.vim_syntastic'

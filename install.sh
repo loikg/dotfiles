@@ -23,17 +23,18 @@ for file in $files; do
 	ln -sfn $dir/$file $HOME
 done
 
-echo "setup vundle for vim"
-if test ! -d $HOME/.vim/bundle/Vundle.vim; then
-	mkdir -p $HOME/.vim/bundle
-	git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+echo "setup vim-plug for vim"
+
+if test ! -f $HOME/.vim/autoload/plug.vim; then
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 fi
+
 echo "done"
 
 echo "setup tpm (tmux plugin manager)"
 if test ! -d $HOME/.tmux/plugins/tpm/; then
 	git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 fi
-	
-
-

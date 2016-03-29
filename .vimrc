@@ -42,3 +42,12 @@ let g:epi_login = 'gaonac_l'
 let g:epi_name = 'Loik Gaonach'
 let g:epi_mode_emacs = 1
 "let g:epi_mode_auto = 1 " auto indent epitech style when header
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" tab size
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4

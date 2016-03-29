@@ -15,6 +15,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'loikg/vim-epitech'
+Plugin 'scrooloose/syntastic'
 
 call vundle#end()
 filetype plugin indent on
@@ -51,3 +52,19 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " tab size
 set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+
+" Setup some default ignores
+ let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+    \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+    \}
+
+" syntastic plug
+ set statusline+=%#warningmsg#
+ set statusline+=%{SyntasticStatuslineFlag()}
+ set statusline+=%*
+
+ let g:syntastic_always_populate_loc_list = 1
+ let g:syntastic_auto_loc_list = 1
+ let g:syntastic_check_on_open = 1
+ let g:syntastic_check_on_wq = 0

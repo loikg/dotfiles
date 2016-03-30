@@ -12,6 +12,7 @@ syntax on
 
 " enable line number
 set number
+set numberwidth=3
 
 " enable mouse
 set mouse=a
@@ -36,6 +37,8 @@ Plug 'edkolev/tmuxline.vim'				"tmux status bar theme ^^
 Plug 'loikg/vim-epitech'				"epitech plugin
 Plug 'scrooloose/syntastic'				"syntax checker
 Plug 'scrooloose/nerdcommenter'			"quicly comment
+Plug 'airblade/vim-gitgutter'			"show modified line in gutter
+Plug 'rking/ag.vim'						"search through project
 
 call plug#end()
 

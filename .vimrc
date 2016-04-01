@@ -57,6 +57,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " Show filename only
 let g:epi_login = 'gaonac_l'
 let g:epi_name = 'Loik Gaonach'
 let g:epi_mode_emacs = 1
+let g:header_update = 0
 
 " Ctrl-p config
 " ignore some folders

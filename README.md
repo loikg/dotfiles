@@ -8,4 +8,13 @@ My personnal configs files : zsh, vim, emacs, tmux ...
 	./install.sh
 ```
 
+Install plugin vim :
+
+inside vim do:
+
+```
+	:PlugInstall
+```
+
+
 Run ./install will symlink all the files in $HOME directory.

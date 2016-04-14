@@ -69,6 +69,9 @@ export HOSTTYPE="x86_64"
 
 #Alias
 
+# Epitech
+alias blih="blih -u gaonac_l"
+
 # git
 alias gts="git status"
 alias gtpm="git push origin master"

@@ -101,3 +101,5 @@ alias gccw="gcc -W -Wextra -Wall - Werror"
 
 alias cl="clean-tmp"
 alias src="source ~/.zshrc"
+
+alias lc="i3lock -i ~/Pictures/Wallpapers/triangle-minimalism-colorful-2880x1800.png"

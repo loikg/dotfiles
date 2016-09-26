@@ -45,7 +45,7 @@ ZSH_THEME="gentoo"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
-plugins=(git sudo web-search)
+plugins=(git sudo web-search zsh-autosuggestions)
 
 # User configuration
 
@@ -103,3 +103,5 @@ alias cl="clean-tmp"
 alias src="source ~/.zshrc"
 
 alias lc="i3lock -i ~/Pictures/Wallpapers/triangle-minimalism-colorful-2880x1800.png"
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"

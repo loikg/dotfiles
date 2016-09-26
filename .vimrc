@@ -17,6 +17,9 @@ set numberwidth=3
 " enable mouse
 set mouse=a
 
+" disable bell
+set noerrorbells
+
 " tab size
 set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 
@@ -38,7 +41,9 @@ Plug 'loikg/vim-epitech'				"epitech plugin
 Plug 'scrooloose/syntastic'				"syntax checker
 Plug 'scrooloose/nerdcommenter'			"quicly comment
 Plug 'airblade/vim-gitgutter'			"show modified line in gutter
-Plug 'rking/ag.vim'						"search through project
+Plug 'godlygeek/tabular'				"markdown
+Plug 'plasticboy/vim-markdown'			"markdown
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }	"auto completion
 
 call plug#end()
 
@@ -70,9 +75,12 @@ let g:header_update = 0
  set statusline+=%#warningmsg#
  set statusline+=%{SyntasticStatuslineFlag()}
  set statusline+=%*
+
  let g:syntastic_always_populate_loc_list = 1
  let g:syntastic_auto_loc_list = 1
  let g:syntastic_check_on_open = 1
  let g:syntastic_check_on_wq = 0
- let g:syntastic_cpp_compiler_options = '-std=c++11'
+ let g:syntastic_cpp_compiler_options = '-std=c++11 -Wall -Werror -W -Wextra'
  let g:syntastic_cpp_config_file = '.vim_syntastic'
+
+ let  g:syntastic_c_compiler_options = '-Wall -Werror -W -Wextra'

@@ -1,21 +1,13 @@
 # dotfiles
 
-My personnal configs files : zsh, vim, emacs, tmux ...
+My personnal configs files :
+
+- tmux
+- fish / omf
+- nvim
+- i3
+- alacritty
 
 ```
-	git clone git@github.com:loikg/dotfiles.git ~/.dotfiles
-	cd ~/.dofiles
-	./install.sh
-```
-
-Install plugin vim:
-
-```
-	:PlugInstall
-```
-
-Install tmux plugins:
-
-```
-	ctrl + b and I 
+./setup.sh
 ```

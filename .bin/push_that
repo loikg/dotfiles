@@ -1,3 +1,0 @@
-git add --all
-git commit -am "script commit auto"
-git push origin master

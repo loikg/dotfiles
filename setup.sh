@@ -12,6 +12,7 @@ installOnLinux() {
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
 	stowDotConfigPackage "omf"
+	stowDotConfigPackage "git"
 }
 
 installOnMacos() {
@@ -20,6 +21,7 @@ installOnMacos() {
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
 	stowDotConfigPackage "omf"
+	stowDotConfigPackage "git"
 }
 
 

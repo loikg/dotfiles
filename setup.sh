@@ -11,7 +11,6 @@ installOnLinux() {
 	stowDotConfigPackage "alacritty"
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
-	stowDotConfigPackage "omf"
 	stowDotConfigPackage "git"
 }
 
@@ -20,7 +19,6 @@ installOnMacos() {
 	stowDotConfigPackage "alacritty"
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
-	stowDotConfigPackage "omf"
 	stowDotConfigPackage "git"
 }
 

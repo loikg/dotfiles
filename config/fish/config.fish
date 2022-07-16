@@ -10,3 +10,5 @@ if test -z (pgrep ssh-agent)
   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
   eval (ssh-add ~/.ssh/id_github)
 end
+
+export AWS_PROFILE=epitech

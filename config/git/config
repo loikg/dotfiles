@@ -1,2 +1,7 @@
 [init]
     defaultBranch = main
+[user]
+	email = mail@company.com
+	name = loikg
+[push]
+	autoSetupRemote = true

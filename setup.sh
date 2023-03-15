@@ -20,6 +20,8 @@ installOnMacos() {
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
 	stowDotConfigPackage "git"
+	stowDotConfigPackage "yabai"
+	stowDotConfigPackage "skhd"
 }
 
 

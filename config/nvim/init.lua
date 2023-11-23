@@ -52,10 +52,17 @@ require("lazy").setup({
             })
         end
     },
+
+    -- Telescope
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make' 
+    },
+
     -- LSP setup
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
@@ -64,6 +71,15 @@ require("lazy").setup({
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
+
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            window = {
+                width = .7,
+            },
+        },
+    },
 })
 
 -- LSP config
@@ -87,6 +103,19 @@ require('mason-lspconfig').setup({
   },
 })
 
+local cmp = require('cmp')
+
+cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    }),
+})
+
+vim.o.termguicolors = true
+
+-- Decrease update time
+vim.o.updatetime = 50
+
 -- enable numbers and relative numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -100,7 +129,7 @@ vim.opt.smartindent = true
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 
 vim.g.mapleader = " "
 
@@ -118,3 +147,10 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+-- telescope fzf
+require('telescope').load_extension('fzf')
+
+-- Zen Mode
+local zen = require("zen-mode")
+
+vim.keymap.set("n", "<leader>z", zen.toggle, {})

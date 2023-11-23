@@ -13,18 +13,10 @@ if test -z (pgrep ssh-agent)
     eval (ssh-add ~/.ssh/id_github)
 end
 
-# set editor
 set -gx EDITOR nvim
-
-export AWS_PROFILE=epitech
 
 # Rust
 fish_add_path "$HOME/.cargo/bin"
-
-# pnpm
-set -gx PNPM_HOME "/home/loik/.local/share/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
-
 
 # Go
 switch (uname)

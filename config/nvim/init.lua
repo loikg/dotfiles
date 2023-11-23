@@ -40,6 +40,7 @@ require("lazy").setup({
                     "go",
                     "gomod",
                     "gosum",
+                    "hcl",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -76,7 +77,11 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {},
+  ensure_installed = {
+        "gopls",
+        "terraformls",
+        "tsserver",
+    },
   handlers = {
     lsp_zero.default_setup,
   },

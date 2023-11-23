@@ -28,9 +28,20 @@ set -gx PATH "$PNPM_HOME" $PATH
 
 # Go
 switch (uname)
-	case Darwin
-		set -gx GOPATH "$HOME/go"
-		fish_add_path "$GOPATH/bin"
-	case '*'
-		fish_add_path "/usr/local/go/bin"
+    case Darwin
+        set -gx GOPATH "$HOME/go"
+        fish_add_path "$GOPATH/bin"
+    case '*'
+        fish_add_path /usr/local/go/bin
 end
+
+# Volta
+set -gx VOLTA_FEATURE_PNPM "1"
+set -gx VOLTA_HOME "$HOME/.volta"
+fish_add_path "$VOLTA_HOME/bin"
+
+alias tf="terraform"
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

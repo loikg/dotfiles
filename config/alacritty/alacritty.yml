@@ -1,6 +1,5 @@
 import:
   - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
-  #- ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
 
 window:
   option_as_alt: Both

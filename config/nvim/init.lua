@@ -101,40 +101,40 @@ end
 -- nvim-tree
 require("nvim-tree").setup({
     on_attach = nvim_tree_on_attach,
-	renderer = {
-		icons = {
-			show = {
-				file = false,
-				folder = false,
-				folder_arrow = false,
-				git = false,
-				modified = false,
-				diagnostics = false,
-				bookmarks = false,
-			}
-		}
-	}
+    renderer = {
+        icons = {
+            show = {
+                file = false,
+                folder = false,
+                folder_arrow = false,
+                git = false,
+                modified = false,
+                diagnostics = false,
+                bookmarks = false,
+            }
+        }
+    }
 })
 
 -- LSP config
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {
+    ensure_installed = {
         "gopls",
         "terraformls",
         "tsserver",
     },
-  handlers = {
-    lsp_zero.default_setup,
-  },
+    handlers = {
+        lsp_zero.default_setup,
+    },
 })
 
 local cmp = require('cmp')
@@ -179,6 +179,15 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- telescope
+local telescope = require('telescope')
+
+telescope.setup {
+    pickers = {
+        find_files = {
+            find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
+        }
+    }
+} 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 -- telescope fzf

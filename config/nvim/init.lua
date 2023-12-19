@@ -101,6 +101,11 @@ end
 -- nvim-tree
 require("nvim-tree").setup({
     on_attach = nvim_tree_on_attach,
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
+    },
     renderer = {
         icons = {
             show = {
@@ -113,7 +118,7 @@ require("nvim-tree").setup({
                 bookmarks = false,
             }
         }
-    }
+    },
 })
 
 -- LSP config
@@ -142,8 +147,12 @@ local cmp = require('cmp')
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ["<Tab>"] = cmp.mapping.confirm({select = false}),
     }),
 })
+
+-- disable line wrapping
+vim.o.wrap = false
 
 vim.o.termguicolors = true
 
@@ -190,6 +199,9 @@ telescope.setup {
 } 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fm', builtin.marks, {})
+vim.keymap.set('n', '<leader>o', builtin.lsp_document_symbols, {})
 -- telescope fzf
 require('telescope').load_extension('fzf')
 

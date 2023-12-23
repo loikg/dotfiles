@@ -82,6 +82,7 @@ require("lazy").setup({
     },
 
     {"nvim-tree/nvim-tree.lua"},
+    {"nvim-telescope/telescope-ui-select.nvim"},
 })
 
 -- disable netrw as it's replace by nvim-tree
@@ -129,6 +130,7 @@ lsp_zero.on_attach(function(client, bufnr)
     -- to learn the available actions
     lsp_zero.default_keymaps({buffer = bufnr})
     vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {buffer = bufnr})
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {buffer = bufnr})
 end)
 
 require('mason').setup({})
@@ -192,12 +194,20 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 local telescope = require('telescope')
 
 telescope.setup {
+    extensions = {
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {}
+        },
+    },
     pickers = {
         find_files = {
             find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
         }
-    }
-} 
+    },
+}
+
+telescope.load_extension("ui-select")
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})

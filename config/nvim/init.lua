@@ -141,6 +141,7 @@ lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({buffer = bufnr})
     vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {buffer = bufnr})
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {buffer = bufnr})
+    vim.keymap.set({ 'i' }, "<C-h>", vim.lsp.buf.signature_help, {buffer = bufnr})
 end)
 
 require('mason').setup({})

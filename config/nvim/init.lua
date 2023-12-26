@@ -73,6 +73,11 @@ require("lazy").setup({
     {'L3MON4D3/LuaSnip'},
 
     {
+      'stevearc/conform.nvim',
+      opts = {},
+    },
+
+    {
         "folke/zen-mode.nvim",
         opts = {
             window = {
@@ -221,3 +226,20 @@ require('telescope').load_extension('fzf')
 local zen = require("zen-mode")
 
 vim.keymap.set("n", "<leader>z", zen.toggle, {})
+
+-- Formatter
+local conform = require("conform")
+conform.setup({
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_fallback = true,
+  },
+  formatters_by_ft = {
+    go = { "gofumpt" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    rust = { "rustfmt" },
+  },
+})
+
+vim.keymap.set("n", "<leader>fm", conform.format)

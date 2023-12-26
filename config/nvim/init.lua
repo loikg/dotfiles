@@ -148,8 +148,11 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
         "gopls",
+        "golangci_lint_ls",
         "terraformls",
         "tsserver",
+        "rust_analyzer",
+        "eslint",
     },
     handlers = {
         lsp_zero.default_setup,

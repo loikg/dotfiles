@@ -87,7 +87,12 @@ require("lazy").setup({
     },
 
     {"nvim-tree/nvim-tree.lua"},
+
+    -- UI select for lsp code action
     {"nvim-telescope/telescope-ui-select.nvim"},
+
+    { "tpope/vim-surround", lazy = false },
+    { "tpope/vim-commentary", lazy = false },
 })
 
 -- disable netrw as it's replace by nvim-tree

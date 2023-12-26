@@ -24,7 +24,7 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function ()
+        config = function()
             local configs = require("nvim-treesitter.configs")
             configs.setup({
                 ensure_installed = {
@@ -55,7 +55,8 @@ require("lazy").setup({
 
     -- Telescope
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.4',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
@@ -64,17 +65,17 @@ require("lazy").setup({
     },
 
     -- LSP setup
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
-    {'L3MON4D3/LuaSnip'},
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'L3MON4D3/LuaSnip' },
 
     {
-      'stevearc/conform.nvim',
-      opts = {},
+        'stevearc/conform.nvim',
+        opts = {},
     },
 
     {
@@ -86,13 +87,13 @@ require("lazy").setup({
         },
     },
 
-    {"nvim-tree/nvim-tree.lua"},
+    { "nvim-tree/nvim-tree.lua" },
 
     -- UI select for lsp code action
-    {"nvim-telescope/telescope-ui-select.nvim"},
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
-    { "tpope/vim-surround", lazy = false },
-    { "tpope/vim-commentary", lazy = false },
+    { "tpope/vim-surround",                     lazy = false },
+    { "tpope/vim-commentary",                   lazy = false },
 })
 
 -- disable netrw as it's replace by nvim-tree
@@ -138,10 +139,10 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
-    lsp_zero.default_keymaps({buffer = bufnr})
-    vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {buffer = bufnr})
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {buffer = bufnr})
-    vim.keymap.set({ 'i' }, "<C-h>", vim.lsp.buf.signature_help, {buffer = bufnr})
+    lsp_zero.default_keymaps({ buffer = bufnr })
+    vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { buffer = bufnr })
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+    vim.keymap.set({ 'i' }, "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr })
 end)
 
 require('mason').setup({})
@@ -164,7 +165,7 @@ local cmp = require('cmp')
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<Tab>"] = cmp.mapping.confirm({select = false}),
+        ["<Tab>"] = cmp.mapping.confirm({ select = false }),
     }),
 })
 
@@ -197,10 +198,10 @@ vim.g.mapleader = " "
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
@@ -215,7 +216,7 @@ telescope.setup {
     },
     pickers = {
         find_files = {
-            find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
+            find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
         }
     },
 }
@@ -239,16 +240,30 @@ vim.keymap.set("n", "<leader>z", zen.toggle, {})
 -- Formatter
 local conform = require("conform")
 conform.setup({
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = true,
-  },
-  formatters_by_ft = {
-    go = { "gofumpt" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    rust = { "rustfmt" },
-  },
+    format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+    },
+    formatters_by_ft = {
+        go = { "gofumpt", "goimports" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        svelte = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        graphql = { "prettier" },
+        rust = { "rustfmt" },
+    },
 })
 
-vim.keymap.set("n", "<leader>fm", conform.format)
+vim.keymap.set("n", "<leader>fm", function()
+    conform.format({
+        timeout_ms = 500,
+        lsp_fallback = true,
+    })
+end)

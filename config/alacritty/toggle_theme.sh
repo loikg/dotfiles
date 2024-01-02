@@ -1,12 +1,26 @@
 #!/bin/bash
 
-configPath="$HOME/.config/alacritty/alacritty.yml"
-lightTheme=catppuccin-latte
-darkTheme=catppuccin-mocha
+alacrittyConfigPath="$HOME/.config/alacritty/alacritty.yml"
+alacrittyLightTheme=catppuccin-latte
+alacrittyDarkTheme=catppuccin-mocha
+tmuxConfigPath="$HOME/.config/tmux/tmux.conf"
+tmuxLightTheme=latte
+tmuxDarkTheme=mocha
+fishLightTheme="Catppuccin Latte"
+fishDarkTheme="Catppuccin Mocha"
 
-grep -q $lightTheme $configPath && \
-    gsed -i --follow-symlinks "s/$lightTheme/$darkTheme/" $configPath && \
+theme=$1
+
+if [ "$theme" == "dark" ]; then
+    gsed -i --follow-symlinks "s/$alacrittyLightTheme/$alacrittyDarkTheme/" $alacrittyConfigPath && \
+    gsed -i --follow-symlinks "s/$tmuxLightTheme/$tmuxDarkTheme/" $tmuxConfigPath && \
+    tmux source ~/.config/tmux/tmux.conf && \
+    echo "y" | fish -c "fish_config theme save \"$fishDarkTheme\"" && \
     exit
-
-grep -q $darkTheme $configPath && \
-    gsed -i --follow-symlinks "s/$darkTheme/$lightTheme/" $configPath
+else 
+    gsed -i --follow-symlinks "s/$alacrittyDarkTheme/$alacrittyLightTheme/" $alacrittyConfigPath && \
+    gsed -i --follow-symlinks "s/$tmuxDarkTheme/$tmuxLightTheme/" $tmuxConfigPath && \
+    tmux source ~/.config/tmux/tmux.conf && \
+    echo "y" | fish -c "fish_config theme save \"$fishLightTheme\"" && \
+    exit
+fi

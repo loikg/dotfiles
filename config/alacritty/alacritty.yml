@@ -9,5 +9,5 @@ env:
 
 font:
         normal:
-                family: "Jetbrains Mono"
-        size: 18.0
+                family: "JetbrainsMono Nerd Font Mono"
+        size: 17.0

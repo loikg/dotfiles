@@ -75,7 +75,7 @@ require("lazy").setup({
 
     {
         'stevearc/conform.nvim',
-        opts = {},
+        event = { "BufReadPre", "BufNewFile" },
     },
 
     {
@@ -229,6 +229,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fm', builtin.marks, {})
 vim.keymap.set('n', '<leader>o', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 -- telescope fzf
 require('telescope').load_extension('fzf')
 

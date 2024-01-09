@@ -95,6 +95,8 @@ require("lazy").setup({
 
     { "tpope/vim-surround",                     lazy = false },
     { "tpope/vim-commentary",                   lazy = false },
+
+    { "github/copilot.vim" },
 })
 
 -- disable netrw as it's replace by nvim-tree
@@ -167,8 +169,11 @@ local cmp = require('cmp')
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<Tab>"] = cmp.mapping.confirm({ select = false }),
+        -- ["<Tab>"] = cmp.mapping.confirm({ select = false }),
     }),
+    experimental = {
+        ghost_text = true,
+    }
 })
 
 -- disable line wrapping

@@ -238,6 +238,7 @@ vim.keymap.set('n', '<leader>fm', builtin.marks, {})
 vim.keymap.set('n', '<leader>o', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fc', builtin.commands, {})
 -- telescope fzf
 require('telescope').load_extension('fzf')
 

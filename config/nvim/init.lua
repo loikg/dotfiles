@@ -41,6 +41,7 @@ require("lazy").setup({
                     "gomod",
                     "gosum",
                     "hcl",
+                    "python",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -154,6 +155,7 @@ require('mason-lspconfig').setup({
         "tsserver",
         "rust_analyzer",
         "eslint",
+        "pyright",
     },
     handlers = {
         lsp_zero.default_setup,
@@ -259,6 +261,7 @@ conform.setup({
         markdown = { "prettier" },
         graphql = { "prettier" },
         rust = { "rustfmt" },
+        python = { "black" },
     },
 })
 

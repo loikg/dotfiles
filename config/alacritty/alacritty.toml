@@ -1,0 +1,13 @@
+import = ["/Users/loik/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 17.0
+
+[font.normal]
+family = "JetbrainsMono Nerd Font Mono"
+
+[window]
+option_as_alt = "Both"

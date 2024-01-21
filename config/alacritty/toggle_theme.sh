@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alacrittyConfigPath="$HOME/.config/alacritty/alacritty.yml"
+alacrittyConfigPath="$HOME/.config/alacritty/alacritty.toml"
 alacrittyLightTheme=catppuccin-latte
 alacrittyDarkTheme=catppuccin-mocha
 tmuxConfigPath="$HOME/.config/tmux/tmux.conf"

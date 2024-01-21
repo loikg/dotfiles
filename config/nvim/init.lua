@@ -181,6 +181,7 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
     vim.keymap.set({ 'i' }, "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr })
     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
 end)
 
 require('mason').setup({})

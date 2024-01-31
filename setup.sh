@@ -2,7 +2,7 @@
 
 stowDotConfigPackage() {
     mkdir -p $HOME/.config/$1
-    stow --dir=config --target=$HOME/.config/$1  --verbose=1 $1
+    stow --adopt --dir=config --target=$HOME/.config/$1  --verbose=1 $1
 }
 
 installOnLinux() {

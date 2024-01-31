@@ -1,4 +1,4 @@
-import = ["/Users/loik/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
 
 [env]
 TERM = "xterm-256color"

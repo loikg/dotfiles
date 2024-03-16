@@ -12,6 +12,8 @@ installOnLinux() {
 	stowDotConfigPackage "nvim"
 	stowDotConfigPackage "fish"
 	stowDotConfigPackage "git"
+    stow starship
+    stow zsh
 }
 
 installOnMacos() {
@@ -22,6 +24,8 @@ installOnMacos() {
 	stowDotConfigPackage "git"
 	stowDotConfigPackage "yabai"
 	stowDotConfigPackage "skhd"
+    stow starship
+    stow zsh
 }
 
 

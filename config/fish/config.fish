@@ -37,3 +37,6 @@ alias tf="terraform"
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# setup starship
+starship init fish | source

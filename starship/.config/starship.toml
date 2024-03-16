@@ -26,3 +26,6 @@ truncation_length = 1
 
 [git_status]
 disabled = true
+
+[cmd_duration]
+disabled = true

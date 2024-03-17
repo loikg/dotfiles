@@ -38,7 +38,6 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fc', builtin.commands, {})
             vim.keymap.set('n', '<leader>lb', builtin.git_branches, {})
-            vim.keymap.set('n', '<leader>le', builtin.diagnostics, {})
         end
     },
 }

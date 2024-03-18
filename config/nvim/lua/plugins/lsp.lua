@@ -42,6 +42,10 @@ return {
                     "rust_analyzer",
                     "eslint",
                     "pyright",
+                    "html",
+                    "htmx",
+                    "cssls",
+                    "tailwindcss",
                 },
                 handlers = {
                     lsp_zero.default_setup,

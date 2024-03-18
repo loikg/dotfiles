@@ -19,6 +19,7 @@ return {
                 "gosum",
                 "hcl",
                 "python",
+                "html",
             },
             sync_install = false,
             auto_install = true,

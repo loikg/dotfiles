@@ -56,4 +56,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+vim.diagnostic.config({
+    virtual_text = false,
+})
+
 require("lazy").setup("plugins")

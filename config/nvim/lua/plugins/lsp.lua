@@ -10,6 +10,7 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
+            { 'folke/neodev.nvim', opts = {} },
             {
                 'VonHeikemen/lsp-zero.nvim',
                 branch = 'v3.x',

@@ -3,12 +3,17 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         require('lualine').setup {
-            disabled_filetypes = { 'NvimTree' },
+            disabled_filetypes = { 'NvimTree_1' },
             theme = "catppuccin",
             sections = {
                 lualine_a = {},
                 lualine_b = { 'branch', 'diagnostics' },
-                lualine_c = { 'filename' },
+                lualine_c = {
+                    {
+                        'filename',
+                        path = 1,
+                    }
+                },
                 lualine_x = { 'searchcount' },
                 lualine_y = { 'location' },
                 lualine_z = {}

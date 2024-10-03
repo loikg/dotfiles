@@ -39,7 +39,7 @@ return {
                     "gopls",
                     "golangci_lint_ls",
                     "terraformls",
-                    "tsserver",
+                    "ts_ls",
                     "rust_analyzer",
                     "eslint",
                     "pyright",

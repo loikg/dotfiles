@@ -47,6 +47,7 @@ return {
                     "htmx",
                     "cssls",
                     "tailwindcss",
+                    "sqlls",
                 },
                 handlers = {
                     lsp_zero.default_setup,

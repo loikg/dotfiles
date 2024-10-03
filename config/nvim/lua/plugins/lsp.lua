@@ -108,5 +108,11 @@ return {
             end)
         end
     },
-    { "github/copilot.vim" },
+    {
+        "github/copilot.vim",
+        config = function()
+            -- Disable copilot by default
+            vim.g.copilot_enabled = 0
+        end
+    },
 }

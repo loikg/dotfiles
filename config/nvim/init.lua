@@ -43,18 +43,29 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "100"
 
+-- ignore case when the search pattern is all lowercase
+vim.o.smartcase = true
+vim.o.ignorecase = true
+
+-- clear search highlights after submit
+vim.o.hlsearch = false
+
 vim.g.mapleader = " "
 
--- greatest remap ever
+-- set clipboard to system clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
+-- copy to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- save current file
+vim.keymap.set('n', '<leader>w', '<cmd>write<cr><esc>', { desc = 'Save file' })
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- save all files and quit
+vim.keymap.set('n', '<leader>q', '<cmd>quitall<cr>', { desc = 'Exit vim' })
+
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.diagnostic.config({
     virtual_text = false,

@@ -40,3 +40,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # setup starship
 starship init fish | source
+
+# setup zoxide
+zoxide init --cmd cd fish | source

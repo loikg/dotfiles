@@ -1,57 +1,71 @@
 return {
     -- LSP setup
     {
-        'williamboman/mason.nvim',
-        config = function()
-            require('mason').setup({})
-        end
-    },
-    { 'williamboman/mason-lspconfig.nvim' },
-    {
         'neovim/nvim-lspconfig',
         dependencies = {
-            { 'folke/neodev.nvim', opts = {} },
+            'folke/neodev.nvim',
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+            { "j-hui/fidget.nvim", opts = {} }, -- small popup with lsp server info
             {
                 'VonHeikemen/lsp-zero.nvim',
                 branch = 'v3.x',
-                config = function()
-                    -- LSP config
-                    local lsp_zero = require('lsp-zero')
-
-                    lsp_zero.on_attach(function(client, bufnr)
-                        -- see :help lsp-zero-keybindings
-                        -- to learn the available actions
-                        lsp_zero.default_keymaps({ buffer = bufnr })
-                        vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { buffer = bufnr })
-                        vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
-                        vim.keymap.set({ 'i', 'n' }, "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr })
-                        vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
-                        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
-                    end)
-                end,
             },
         },
         config = function()
+            require("neodev").setup {} -- setup everything require for lua development for nvim
+            local mason = require('mason')
+
+            mason.setup({})
+
             local lsp_zero = require('lsp-zero')
+
+            lsp_zero.on_attach(function(client, bufnr)
+                -- see :help lsp-zero-keybindings
+                -- to learn the available actions
+                lsp_zero.default_keymaps({ buffer = bufnr })
+                vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { buffer = bufnr })
+                vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+                vim.keymap.set({ 'i', 'n' }, "<C-h>", vim.lsp.buf.signature_help, { buffer = bufnr })
+                vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+            end)
+
+            local ensure_installed = {
+                "lua_ls",
+                "gopls",
+                "golangci_lint_ls",
+                "terraformls",
+                "ts_ls",
+                "rust_analyzer",
+                "eslint",
+                "pyright",
+                "html",
+                "htmx",
+                "cssls",
+                "tailwindcss",
+
+                -- formatters
+                "gofumpt",
+                "goimports",
+
+                -- linters
+                "actionlint",
+
+                -- dap
+                "delve",
+            }
+
+
             require('mason-lspconfig').setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "gopls",
-                    "golangci_lint_ls",
-                    "terraformls",
-                    "ts_ls",
-                    "rust_analyzer",
-                    "eslint",
-                    "pyright",
-                    "html",
-                    "htmx",
-                    "cssls",
-                    "tailwindcss",
-                    "sqlls",
-                },
                 handlers = {
                     lsp_zero.default_setup,
                 },
+            })
+
+            require('mason-tool-installer').setup({
+                ensure_installed = ensure_installed,
             })
         end,
     },
@@ -62,6 +76,7 @@ return {
             local cmp = require('cmp')
 
             cmp.setup({
+                enabled = false,
                 mapping = cmp.mapping.preset.insert({
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     -- ["<Tab>"] = cmp.mapping.confirm({ select = false }),

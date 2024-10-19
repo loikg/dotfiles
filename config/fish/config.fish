@@ -37,6 +37,8 @@ fish_add_path "$VOLTA_HOME/bin"
 
 alias tf="terraform"
 
+abbr -a tc "sesh connect (sesh list -t | fzf)"
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH

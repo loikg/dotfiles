@@ -17,8 +17,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 
-
-
+-- Reserve a space in the gutter with by many plugins
+vim.opt.signcolumn = 'yes'
 
 -- disable line wrapping
 vim.o.wrap = false
@@ -38,8 +38,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-
-vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "100"
 

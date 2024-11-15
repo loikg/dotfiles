@@ -21,7 +21,7 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-g', '*.env' }
+                        find_command = { 'rg', '--files', '--hidden', '-g', '!**/.git/**', '-g', '!**/node_modules/**', '-g', '*.env' }
                     }
                 },
             }

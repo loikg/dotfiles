@@ -2,13 +2,22 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
         "rcarriga/nvim-dap-ui",
-        "leoluz/nvim-dap-go",
         "nvim-neotest/nvim-nio",
+
+        -- adapters
+        "leoluz/nvim-dap-go",
+        "mxsdev/nvim-dap-vscode-js"
     },
     config = function()
         local dap = require('dap')
         local dapui = require("dapui")
+
         require("dap-go").setup()
+        require("dap-vscode-js").setup({
+            adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+        })
+
+
         dapui.setup()
 
         dap.listeners.before.attach.dapui_config = function()

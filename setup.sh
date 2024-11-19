@@ -26,6 +26,7 @@ installOnMacos() {
 	stowDotConfigPackage "skhd"
     stow starship
     stow zsh
+    stow wezterm
 }
 
 

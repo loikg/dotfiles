@@ -14,6 +14,7 @@ installOnLinux() {
 	stowDotConfigPackage "git"
     stow starship
     stow zsh
+    stow wezterm
 }
 
 installOnMacos() {

@@ -57,7 +57,7 @@ end
 
 config.color_scheme = scheme_for_appearance(get_appearance())
 
-config.font = wezterm.font 'JetbrainsMono Nerd Font Mono'
+config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
 config.font_size = 18
 config.line_height = 1.15
 

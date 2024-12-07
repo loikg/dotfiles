@@ -1,8 +1,11 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
+
+workspace_switcher.zoxide_path = "/opt/homebrew/bin/zoxide"
 
 -- wezterm.gui is not available to the mux server, so take care to
 -- do something reasonable when this config is evaluated by the mux
@@ -55,6 +58,7 @@ local function split_nav(resize_or_move, key)
     }
 end
 
+
 config.color_scheme = scheme_for_appearance(get_appearance())
 
 config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
@@ -62,7 +66,6 @@ config.font_size = 18
 config.line_height = 1.15
 
 config.enable_scroll_bar = false
--- config.enable_tab_bar = false
 config.window_decorations = 'RESIZE'
 config.window_padding = {
     left = 0,
@@ -70,6 +73,8 @@ config.window_padding = {
     top = 0,
     bottom = 0,
 }
+
+-- Do not render native GUI tab bar
 config.use_fancy_tab_bar = false
 
 -- Leader is the same as my old tmux prefix
@@ -117,6 +122,16 @@ config.keys = {
         mods = 'META',
         key = 'p',
         action = wezterm.action.ActivateTabRelative(1)
+    },
+    {
+        key = "s",
+        mods = "LEADER",
+        action = workspace_switcher.switch_workspace(),
+    },
+    {
+        key = "S",
+        mods = "LEADER",
+        action = workspace_switcher.switch_to_prev_workspace(),
     },
     split_nav('move', 'h'),
     split_nav('move', 'j'),

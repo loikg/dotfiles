@@ -2,6 +2,7 @@ if status is-interactive
     if test (uname) = Darwin
         eval (/opt/homebrew/bin/brew shellenv)
     end
+    atuin init fish | source
 end
 
 # Run ssh-agent

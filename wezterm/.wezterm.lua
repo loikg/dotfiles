@@ -1,11 +1,23 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
-local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+local wezterm                   = require 'wezterm'
+local act                       = wezterm.action
+
+-- Pull in plugns
+local workspace_switcher        = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 -- This will hold the configuration.
-local config = wezterm.config_builder()
+local config                    = wezterm.config_builder()
 
-workspace_switcher.zoxide_path = "/opt/homebrew/bin/zoxide"
+workspace_switcher.zoxide_path  = "/opt/homebrew/bin/zoxide"
+
+-- Create a domain (mux server) and automatically connect to it on start.
+-- The shell will be directly connected to the default workspace.
+config.unix_domains             = {
+    {
+        name = 'unix',
+    },
+}
+config.default_gui_startup_args = { 'connect', 'unix' }
 
 -- wezterm.gui is not available to the mux server, so take care to
 -- do something reasonable when this config is evaluated by the mux
@@ -58,7 +70,6 @@ local function split_nav(resize_or_move, key)
     }
 end
 
-
 config.color_scheme = scheme_for_appearance(get_appearance())
 
 config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
@@ -83,12 +94,12 @@ config.keys = {
     -- splitting
     {
         mods   = "LEADER",
-        key    = "\"",
+        key    = "x",
         action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }
     },
     {
         mods   = "LEADER",
-        key    = "%",
+        key    = "v",
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }
     },
     -- Maximize window
@@ -133,11 +144,49 @@ config.keys = {
         mods = "LEADER",
         action = workspace_switcher.switch_to_prev_workspace(),
     },
+    -- Attach to muxer
+    {
+        key = 'a',
+        mods = 'LEADER',
+        action = act.AttachDomain 'unix',
+    },
+
+    -- Detach from muxer
+    {
+        key = 'd',
+        mods = 'LEADER',
+        action = act.DetachDomain { DomainName = 'unix' },
+    },
     split_nav('move', 'h'),
     split_nav('move', 'j'),
     split_nav('move', 'k'),
     split_nav('move', 'l'),
 }
+
+wezterm.on('update-status', function(window, _)
+    local color_scheme = window:effective_config().resolved_palette
+    -- Note the use of wezterm.color.parse here, this returns
+    -- a Color object, which comes with functionality for lightening
+    -- or darkening the colour (amongst other things).
+    local bg = wezterm.color.parse(color_scheme.background)
+    local fg = color_scheme.foreground
+
+    local segment_bg
+    if get_appearance():find('Dark') then
+        segment_bg = bg:lighten(0.15)
+    else
+        segment_bg = bg:darken(0.15)
+    end
+
+    window:set_right_status(wezterm.format {
+        { Attribute = { Underline = 'Single' } },
+        { Attribute = { Italic = true } },
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { Color = fg } },
+        { Background = { Color = segment_bg } },
+        { Text = window:active_workspace() },
+    })
+end)
 
 -- and finally, return the configuration to wezterm
 return config

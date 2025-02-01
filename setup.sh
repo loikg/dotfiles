@@ -15,6 +15,7 @@ installOnLinux() {
     stow starship
     stow zsh
     stow wezterm
+    stow ghostty
 }
 
 installOnMacos() {

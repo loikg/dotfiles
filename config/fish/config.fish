@@ -2,7 +2,7 @@ if status is-interactive
     if test (uname) = Darwin
         eval (/opt/homebrew/bin/brew shellenv)
     end
-    atuin init fish | source
+    atuin init --disable-up-arrow fish | source
 end
 
 # Run ssh-agent

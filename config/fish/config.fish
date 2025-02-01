@@ -23,13 +23,9 @@ set -g fish_key_bindings fish_vi_key_bindings
 source "$HOME/.cargo/env.fish"
 
 # Go
-switch (uname)
-    case Darwin
-        set -gx GOPATH "$HOME/go"
-        fish_add_path "$GOPATH/bin"
-    case '*'
-        fish_add_path /usr/local/go/bin
-end
+set -gx GOPATH "$HOME/go"
+fish_add_path "$GOPATH/bin"
+fish_add_path /usr/local/go/bin
 
 # Volta
 set -gx VOLTA_FEATURE_PNPM "1"
@@ -49,3 +45,7 @@ starship init fish | source
 
 # setup zoxide
 zoxide init --cmd cd fish | source
+
+# Volta
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH

@@ -16,6 +16,7 @@ installOnLinux() {
     stow zsh
     stow wezterm
     stow ghostty
+    stow kitty
 }
 
 installOnMacos() {

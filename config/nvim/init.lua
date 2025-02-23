@@ -63,7 +63,7 @@ vim.keymap.set('n', '<leader>w', '<cmd>write<cr><esc>', { desc = 'Save file' })
 -- save all files and quit
 vim.keymap.set('n', '<leader>q', '<cmd>quitall<cr>', { desc = 'Exit vim' })
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.diagnostic.config({
     virtual_text = false,

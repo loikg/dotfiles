@@ -1,26 +1,39 @@
 return {
     {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-        },
-        config = function()
-            local cmp = require('cmp')
+        'saghen/blink.cmp',
 
-            cmp.setup({
-                enabled = true,
-                sources = {
-                    { name = 'nvim_lsp' },
+        version = '1.*',
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            -- See :h blink-cmp-config-keymap for defining your own keymap
+            keymap = { preset = 'super-tab' },
+
+            signature = {
+                enabled = true
+            },
+
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+
+            completion = {
+                documentation = {
+                    auto_show = true,
+                    window = { border = 'single' },
                 },
-                mapping = cmp.mapping.preset.insert({
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                    -- ["<Tab>"] = cmp.mapping.confirm({ select = false }),
-                }),
-                experimental = {
-                    ghost_text = true,
-                }
-            })
-        end
+                menu = { border = 'single' },
+                ghost_text = { enabled = true },
+            },
+
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+
+            fuzzy = { implementation = "prefer_rust_with_warning" }
+        },
+        opts_extend = { "sources.default" }
     },
     -- LSP setup
     {
@@ -45,11 +58,6 @@ return {
             )
 
             local lspconfig_defaults = require('lspconfig').util.default_config
-            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-                'force',
-                lspconfig_defaults.capabilities,
-                require('cmp_nvim_lsp').default_capabilities()
-            )
 
             -- This is where you enable features that only work
             -- if there is a language server active in the file
@@ -84,7 +92,7 @@ return {
                 "golangci_lint_ls",
                 "terraformls",
                 "ts_ls",
-                "denols",
+                -- "denols",
                 "rust_analyzer",
                 "eslint",
                 "pyright",
@@ -111,11 +119,12 @@ return {
                         require('lspconfig')[server_name].setup({})
                     end,
 
-                    ["denols"] = function()
-                        require("lspconfig").denols.setup {
-                            root_markers = { "deno.json", "deno.jsonc" },
-                        }
-                    end,
+                    -- ["denols"] = function()
+                    --     require("lspconfig").denols.setup {
+                    --         enable = false,
+                    --         root_markers = { "deno.json", "deno.jsonc" },
+                    --     }
+                    -- end,
 
                     ["ts_ls"] = function()
                         require("lspconfig").ts_ls.setup {

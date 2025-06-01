@@ -1,9 +1,18 @@
 return {
     {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
         'saghen/blink.cmp',
-
         version = '1.*',
-
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
@@ -28,8 +37,17 @@ return {
             },
 
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        -- make lazydev completions top priority (see `:h blink.cmp`)
+                        score_offset = 100,
+                    },
+                },
             },
+
 
             fuzzy = { implementation = "prefer_rust_with_warning" }
         },
@@ -37,30 +55,17 @@ return {
     },
     -- LSP setup
     {
-        'neovim/nvim-lspconfig',
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
         dependencies = {
-            'folke/neodev.nvim',
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
-            { "j-hui/fidget.nvim", opts = {} }, -- small popup with lsp server info
+            { "mason-org/mason.nvim",                     opts = {} },
+            { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+            { "neovim/nvim-lspconfig" },
+            { "j-hui/fidget.nvim",                        opts = {} }, -- small popup with lsp server info
         },
         config = function()
-            require("neodev").setup {} -- setup everything require for lua development for nvim
+            vim.o.winborder = 'rounded'
 
-            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-                vim.lsp.handlers.hover,
-                { border = 'rounded' }
-            )
-            vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-                vim.lsp.handlers.signature_help,
-                { border = 'rounded' }
-            )
-
-            local lspconfig_defaults = require('lspconfig').util.default_config
-
-            -- This is where you enable features that only work
-            -- if there is a language server active in the file
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(event)
                     local opts = { buffer = event.buf }
@@ -79,12 +84,6 @@ return {
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
                 end,
             })
-
-            -- lsp_zero.on_attach(function(client, bufnr)
-            -- end)
-
-            local mason = require('mason')
-            mason.setup({})
 
             local ensure_installed = {
                 "lua_ls",
@@ -112,40 +111,12 @@ return {
                 "delve",
             }
 
-
-            require('mason-lspconfig').setup({
-                handlers = {
-                    function(server_name)
-                        require('lspconfig')[server_name].setup({})
-                    end,
-
-                    -- ["denols"] = function()
-                    --     require("lspconfig").denols.setup {
-                    --         enable = false,
-                    --         root_markers = { "deno.json", "deno.jsonc" },
-                    --     }
-                    -- end,
-
-                    ["ts_ls"] = function()
-                        require("lspconfig").ts_ls.setup {
-                            root_markers = { "package.json", "tsconfig.json" },
-                            on_attach = function(client)
-                                if require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
-                                    if client.name == "ts_ls" then
-                                        client.stop()
-                                        return
-                                    end
-                                end
-                            end
-                        }
-                    end,
-                },
-            })
-
             require('mason-tool-installer').setup({
                 ensure_installed = ensure_installed,
             })
-        end,
+
+            require("mason-lspconfig").setup()
+        end
     },
     {
         'stevearc/conform.nvim',
@@ -186,6 +157,7 @@ return {
     },
     {
         "github/copilot.vim",
+        enabled = false,
         config = function()
             -- Disable copilot by default
             vim.g.copilot_enabled = 0

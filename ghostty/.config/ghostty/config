@@ -1,8 +1,15 @@
 font-family = "JetBrainsMono Nerd Font"
-font-size = 18.0
+font-size = 16.0
 theme = dark:cyberdream,light:cyberdream-light
 
-keybind = alt+k=goto_split:up
-keybind = alt+j=goto_split:down
-keybind = alt+h=goto_split:left
-keybind = alt+l=goto_split:right
+window-decoration = none
+gtk-titlebar = false
+macos-option-as-alt = true
+
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind

@@ -142,12 +142,17 @@ return {
             -- Formatter
             local conform = require("conform")
             conform.setup({
+                formatters = {
+                    golines = {
+                        prepend_args = {"--base-formatter", "gofumpt"},
+                    }
+                },
                 format_on_save = {
                     timeout_ms = 500,
                     lsp_fallback = true,
                 },
                 formatters_by_ft = {
-                    go = { "gofumpt", "goimports" },
+                    go = { "golines", "goimports" },
                     javascript = { "prettier" },
                     typescript = { "prettier" },
                     javascriptreact = { "prettier" },

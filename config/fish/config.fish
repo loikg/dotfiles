@@ -49,3 +49,11 @@ zoxide init --cmd cd fish | source
 # Volta
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+
+if test (uname) = Darwin
+    set -gx XDG_CONFIG_HOME "$HOME/.config"
+
+    # Configure 1password ssh agent for macOS
+    set -gx SSH_AUTH_SOCK ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+end

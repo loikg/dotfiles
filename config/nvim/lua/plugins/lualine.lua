@@ -4,7 +4,9 @@ return {
     config = function()
         require('lualine').setup {
             disabled_filetypes = { 'NvimTree_1' },
-            theme = "catppuccin",
+            options = {
+                theme = "auto",
+            },
             sections = {
                 lualine_a = {},
                 lualine_b = { 'branch', 'diagnostics' },

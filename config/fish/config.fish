@@ -14,7 +14,11 @@ if test -z (pgrep ssh-agent)
     eval (ssh-add ~/.ssh/id_github)
 end
 
+# Make neovim my default text editor
 set -gx EDITOR nvim
+
+# Make neivom the man pager
+set -gx MANPAGER 'nvim +Man!'
 
 # set default fish key bindings to vi mode
 set -g fish_key_bindings fish_vi_key_bindings

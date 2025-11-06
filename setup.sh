@@ -17,6 +17,7 @@ installOnLinux() {
     stow wezterm
     stow ghostty
     stow kitty
+    stow sqlite
 }
 
 installOnMacos() {
@@ -32,6 +33,7 @@ installOnMacos() {
     stow wezterm
     stow ghostty
     stow kitty
+    stow sqlite
 }
 
 

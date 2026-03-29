@@ -41,6 +41,9 @@ vim.opt.smartindent = true
 
 vim.opt.colorcolumn = "100"
 
+-- Automatically load files changes from outside of vim
+vim.opt.autoread = true
+
 -- ignore case when the search pattern is all lowercase
 vim.o.smartcase = true
 vim.o.ignorecase = true

@@ -41,7 +41,15 @@ return {
             },
 
             sources = {
-                default = { 'avante', 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+                default = {
+                    -- 'avante',
+                    'lazydev',
+                    'lsp',
+                    'path',
+                    'snippets',
+                    'buffer',
+                    -- 'copilot'
+                },
                 providers = {
                     lazydev = {
                         name = "LazyDev",
@@ -50,6 +58,7 @@ return {
                         score_offset = 100,
                     },
                     avante = {
+                        enabled = false,
                         module = 'blink-cmp-avante',
                         name = 'Avante',
                         opts = {
@@ -57,6 +66,7 @@ return {
                         }
                     },
                     copilot = {
+                        enabled = false,
                         name = "copilot",
                         module = "blink-cmp-copilot",
                         score_offset = 100,
@@ -144,7 +154,7 @@ return {
             conform.setup({
                 formatters = {
                     golines = {
-                        prepend_args = {"--base-formatter", "gofumpt"},
+                        prepend_args = { "--base-formatter", "gofumpt" },
                     }
                 },
                 format_on_save = {

@@ -37,6 +37,7 @@ return {
         config = function()
             require("cyberdream").setup({
                 variant = "auto",
+                transparent = true,
             })
             vim.cmd.colorscheme("cyberdream")
         end

@@ -1,6 +1,8 @@
 font-family = "JetBrainsMono Nerd Font"
 font-size = 16.0
 theme = dark:cyberdream,light:cyberdream-light
+background-opacity = 0.83
+background-blur = true
 
 window-decoration = none
 gtk-titlebar = false
